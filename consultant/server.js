@@ -84,10 +84,11 @@ app.post('/login',function(request,response,next){
 				                          db.close();
     		                }
     		                else{
-    			                        bcrypt.compare(password, res[0].password, function(err, res) {
+                                  console.log(res[0].Acctype);
+    			                        bcrypt.compare(password, res[0].password, function(err, resp) {
     			// res == true
-    			                        if(res==true){
-    				                              response.json({"code":200,"msg":"login successful"});
+    			                        if(resp==true){
+    				                              response.json({"code":200,"msg":"login successful","type":res[0].Acctype});
     				                              response.end();
 					                                db.close();
     			                        }
@@ -179,7 +180,7 @@ app.get("/company/postedquestionans/:clientusername",function(request,response,n
 app.get("/company/postedquestionunans/:clientusername",function(request,response,next){
     var clientUN=request.params.clientusername;
         MongoClient.connect(murl,function(err,db){
-        assert.equal(null,err);           //get all the questions posted by a company and already answered
+        assert.equal(null,err);           //get all the questions posted by a company and unanswered
                 db.collection("questions").find({"clientusername":clientUN,"status":0}).toArray(function(err,result){
                             assert.equal(err, null);
                             response.json(result);
@@ -206,7 +207,7 @@ app.post("/setanswer",function(request,response,next){
     var commentid=parseInt(request.body.commentid);
     var questionid=parseInt(request.body.questionid);
         MongoClient.connect(murl,function(err,db){
-        assert.equal(null,err);
+        assert.equal(null,err); //set answer
                 db.collection("questions").update({"_id":questionid},{$set:{"status":1,"solution":commentid}},function(err,result){
                 assert.equal(err, null);
                         if(result.result.nModified==1){
@@ -222,6 +223,21 @@ app.post("/setanswer",function(request,response,next){
                 });
         });
 });
+
+app.get("/getcomments/:id",function(request,response,next){
+    var questionid=parseInt(request.params.id);
+        MongoClient.connect(murl,function(err,db){
+        assert.equal(null,err); //get comments
+                db.collection("questions").find({"_id":questionid},{"comments":1,"_id":0}).toArray(function(err,result){
+                            assert.equal(err, null);
+                            response.json(result[0]);
+                            response.end();
+                            db.close();
+                });
+
+        });
+});
+
 
 app.listen(3000)
 
