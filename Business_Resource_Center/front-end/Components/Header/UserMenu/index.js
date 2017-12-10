@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import classnames from 'classnames';
 import onClickOutside from 'react-onclickoutside';
@@ -37,10 +37,10 @@ class UserMenu extends Component {
             <i className={classnames('fa fa-close')}></i>
           </Button>
 
-          { !signedIn && <a className={styles.signInLink} href={'/api/user/authViaGitHub'}>
+          { !signedIn && <a className={styles.signInLink} href={'/auth/facebook'}>
             <Button className={styles.gitLoginBtn} alwaysActive>
               <i className={classnames('fa fa-github-alt', styles.subMenuOcto)}></i>
-              <span className={styles.btnLabel}>With GitHub</span>
+              <span className={styles.btnLabel}>With Facebook</span>
             </Button>
           </a> }
 

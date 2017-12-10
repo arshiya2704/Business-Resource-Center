@@ -52,7 +52,7 @@ class AppContainer extends Component {
     if (forums) {
       return (
         <div>
-          <Helmet><title>BRC</title></Helmet>
+
 
           <Header />
           {this.props.children}

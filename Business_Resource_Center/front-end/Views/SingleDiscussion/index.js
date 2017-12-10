@@ -153,7 +153,7 @@ class SingleDiscussion extends Component {
 
     return (
       <div className={appLayout.constraintWidth}>
-        <Helmet><title>{`${title} | ReForum`}</title></Helmet>
+        <Helmet><title>{`${title} | BRC`}</title></Helmet>
 
         <Discussion
           id={_id}
