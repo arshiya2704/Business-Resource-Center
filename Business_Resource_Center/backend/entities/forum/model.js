@@ -1,6 +1,4 @@
-/**
- * forum model
- */
+
 const mongoose = require('mongoose');
 
 const forumSchema = mongoose.Schema({
