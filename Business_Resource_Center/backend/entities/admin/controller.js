@@ -39,7 +39,7 @@ const getAdminDashInfo = () => {
         });
       },
     ], (error, result) => {
-      if (error) { console.log(error); reject(error); }
+      if (error) {  reject(error); }
       else resolve(result);
     });
   });
@@ -52,7 +52,7 @@ const createForum = ({ forum_name, forum_slug }) => {
     Forum
     .findOne({ forum_slug })
     .exec((error, forum) => {
-      if (error) { console.log(error); reject({ serverError: true }); }
+      if (error) { reject({ serverError: true }); }
       else if (forum) { reject({ alreadyExists: true }); }
       else {
       
@@ -62,7 +62,7 @@ const createForum = ({ forum_name, forum_slug }) => {
         });
 
         newForum.save((error) => {
-          if (error) { console.log(error); reject({ created: false }); }
+          if (error) { ; reject({ created: false }); }
           else { resolve(Object.assign({}, newForum, { created: true })); }
         });
       }
@@ -75,15 +75,15 @@ const deleteForum = ({ forum_id }) => {
   return new Promise((resolve, reject) => {
    
     Discussion.remove({ forum_id }).exec((error) => {
-      if (error) { console.log(error); reject({ deleted: false }); }
+      if (error) { reject({ deleted: false }); }
       else {
        
         Opinion.remove({ forum_id }).exec((error) => {
-          if (error) { console.log(error); reject({ deleted: false }); }
+          if (error) {  reject({ deleted: false }); }
           else {
             
             Forum.remove({ _id: forum_id }).exec((error) => {
-              if (error) { console.log(error); reject({ deleted: false }); }
+              if (error) {  reject({ deleted: false }); }
               else { resolve({ deleted: true }); }
             });
           }
@@ -98,15 +98,15 @@ const deleteUser = ({ user_id }) => {
   return new Promise((resolve, reject) => {
     
     Discussion.remove({ user_id }).exec((error) => {
-      if (error) { console.log(error); reject({ deleted: false }); }
+      if (error) {  reject({ deleted: false }); }
       else {
         
         Opinion.remove({ user_id }).exec((error) => {
-          if (error) { console.log(error); reject({ deleted: false }); }
+          if (error) { reject({ deleted: false }); }
           else {
             
             User.remove({ _id: user_id }).exec((error) => {
-              if (error) { console.log(error); reject({ deleted: false }); }
+              if (error) { reject({ deleted: false }); }
               else { resolve({ deleted: true }); }
             });
           }
@@ -121,11 +121,11 @@ const deleteDiscussion = ({ discussion_id }) => {
   return new Promise((resolve, reject) => {
     
     Opinion.remove({ discussion_id }).exec((error) => {
-      if (error) { console.log(error); reject({ deleted: false }); }
+      if (error) { reject({ deleted: false }); }
       else {
       
         Discussion.remove({ _id: discussion_id }).exec((error) => {
-          if (error) { console.log(error); reject({ deleted: false }); }
+          if (error) {  reject({ deleted: false }); }
           else { resolve({ deleted: true }); }
         });
       }
