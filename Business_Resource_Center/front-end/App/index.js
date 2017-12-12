@@ -4,10 +4,10 @@ import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import { Provider } from 'react-redux';
 import styles from './styles';
 
-// app store
+
 import appStore from './store';
 
-// app views
+
 import AppContainer from './App';
 import AdminContainer from './Admin';
 import Dashboard from '../Views/AdminDashboard';

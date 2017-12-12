@@ -16,9 +16,7 @@ const initialState = {
   error: false,
 };
 
-/**
- * reducer for top level app state
- */
+
 export const appReducer = (state = initialState, action) => {
   switch (action.type) {
     case START_FETCHING_FORUMS:
@@ -54,9 +52,7 @@ export const appReducer = (state = initialState, action) => {
   }
 };
 
-/**
- * reducer for user
- */
+
 const initialUserState = {
   fetchingUser: true,
   authenticated: false,
