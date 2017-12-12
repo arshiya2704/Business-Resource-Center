@@ -12,7 +12,6 @@ const discussionSchema = mongoose.Schema({
   date: Date,
   title: String,
   content: Object,
-  favorites: Array,
   tags: Array,
   pinned: Boolean,
 });
