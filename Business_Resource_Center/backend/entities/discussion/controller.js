@@ -9,7 +9,7 @@ const Opinion = require('../opinion/model');
 const getDiscussion = (discussion_slug, discussion_id) => {
   return new Promise((resolve, reject) => {
     let findObject = {};
-    
+    if (discussion_slug) findObject.discussion_slug = discussion_slug;
     if (discussion_id) findObject._id = discussion_id;
 
     Discussion
