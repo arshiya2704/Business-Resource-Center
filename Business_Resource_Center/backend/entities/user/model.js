@@ -1,4 +1,4 @@
-/**
+ /**
  * user model
  */
 const mongoose = require('mongoose');
@@ -12,12 +12,12 @@ const userSchema = mongoose.Schema({
   github: {
     id: Number,
     url: String,
-    company: String,
-    location: String,
-    bio: String,
-    hireable: Boolean,
-    followers: Number,
-    following: Number,
+    //company: String,
+    //location: String,
+    //bio: String,
+    //hireable: Boolean,
+    //followers: Number,
+    //following: Number,
   },
 });
 

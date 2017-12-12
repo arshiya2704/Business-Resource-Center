@@ -1,4 +1,4 @@
-const passport = require('passport');
+  const passport = require('passport');
 const signIn = require('./controller').signIn;
 const getFullProfile = require('./controller').getFullProfile;
 
@@ -14,15 +14,15 @@ const userAPI = (app) => {
 
   // github authentication route
   app.get(
-    '/api/user/authViaGitHub',
-    passport.authenticate('github')
+    '/auth/facebook',
+    passport.authenticate('facebook',{ scope: 'email'})
   );
 
   // callback route from github
   app.get(
     // this should match callback url of github app
-    '/api/user/authViaGitHub/callback',
-    passport.authenticate('github', { failureRedirect: '/signIn/failed' }),
+    '/auth/facebook/callback',
+    passport.authenticate('facebook', { failureRedirect: '/signIn/failed' }),
     (req, res) => { res.redirect('/'); }
   );
 
@@ -42,3 +42,7 @@ const userAPI = (app) => {
 };
 
 module.exports = userAPI;
+
+
+
+

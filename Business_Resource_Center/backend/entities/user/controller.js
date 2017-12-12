@@ -1,4 +1,4 @@
-const _ = require('lodash');
+ const _ = require('lodash');
 const asyncEach = require('async/each');
 
 // controllers
@@ -35,27 +35,28 @@ const signInViaGithub = (gitProfile) => {
   return new Promise((resolve, reject) => {
 
     // find if user exist on db
-    User.findOne({ username: gitProfile.username }, (error, user) => {
+    User.findOne({ username: gitProfile.displayName }, (error, user) => {
       if (error) { console.log(error); reject(error); }
       else {
         // get the email from emails array of gitProfile
-        const email = _.find(gitProfile.emails, { verified: true }).value;
+        console.log(JSON.stringify(gitProfile));
+        const email = gitProfile.displayName;
 
         // user existed on db
         if (user) {
           // update the user with latest git profile info
-          user.name = gitProfile.displayName;
-          user.username = gitProfile.username;
-          user.avatarUrl = gitProfile._json.avatar_url;
-          user.email = email;
-          user.github.id = gitProfile._json.id,
-          user.github.url = gitProfile._json.html_url,
-          user.github.company = gitProfile._json.company,
-          user.github.location = gitProfile._json.location,
-          user.github.hireable = gitProfile._json.hireable,
-          user.github.bio = gitProfile._json.bio,
-          user.github.followers = gitProfile._json.followers,
-          user.github.following = gitProfile._json.following,
+          user.name = gitProfile.displayName,
+          user.username = gitProfile.id,
+          user.avatarUrl = gitProfile._json.picture.data.url,
+          user.email = gitProfile.displayName,
+          user.github.id = gitProfile.id,
+          user.github.url = gitProfile.profileUrl,
+          //user.github.company = gitProfile._json.company,
+          //user.github.location = gitProfile._json.location,
+          //user.github.hireable = gitProfile._json.hireable,
+          //user.github.bio = gitProfile._json.bio,
+          //user.github.followers = gitProfile._json.followers,
+          //user.github.following = gitProfile._json.following,
 
           // save the info and resolve the user doc
           user.save((error) => {
@@ -77,19 +78,19 @@ const signInViaGithub = (gitProfile) => {
             // create a new user
             const newUser = new User({
               name: gitProfile.displayName,
-              username: gitProfile.username,
-              avatarUrl: gitProfile._json.avatar_url,
-              email: email,
+              username: gitProfile.id,
+              avatarUrl: gitProfile._json.picture.data.url,
+              email: gitProfile.displayName,
               role: assignAdmin ? 'admin' : 'user',
               github: {
-                id: gitProfile._json.id,
-                url: gitProfile._json.html_url,
-                company: gitProfile._json.company,
-                location: gitProfile._json.location,
-                hireable: gitProfile._json.hireable,
-                bio: gitProfile._json.bio,
-                followers: gitProfile._json.followers,
-                following: gitProfile._json.following,
+                id: gitProfile.id,
+                url: gitProfile.profileUrl,
+                //company: gitProfile._json.company,
+                //location: gitProfile._json.location,
+                //hireable: gitProfile._json.hireable,
+                //bio: gitProfile._json.bio,
+                //followers: gitProfile._json.followers,
+                //following: gitProfile._json.following,
               },
             });
 

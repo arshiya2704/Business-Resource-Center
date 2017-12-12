@@ -1,8 +1,8 @@
-/**
+ /**
  * module dependencies for passport configuration
  */
 const passport = require('passport');
-const GitHubStrategy = require('passport-github').Strategy;
+const GitHubStrategy = require('passport-facebook').Strategy;
 
 const GITHUB_CLIENT_ID = require('../config/credentials').GITHUB_CLIENT_ID;
 const GITHUB_CLIENT_SECRET = require('../config/credentials').GITHUB_CLIENT_SECRET;
@@ -33,7 +33,9 @@ const passportConfig = (app) => {
       clientID: GITHUB_CLIENT_ID,
       clientSecret: GITHUB_CLIENT_SECRET,
       callbackURL: GITHUB_CALLBACK_URL,
-      scope: 'user:email',
+      profileFields: ['id', 'displayName','emails','link','photos']
+      //scope: 'user:email',
+      //scope: 'email:email',
     },
     (accessToken, refreshToken, gitProfile, done) => {
       signInViaGithub(gitProfile).then(
