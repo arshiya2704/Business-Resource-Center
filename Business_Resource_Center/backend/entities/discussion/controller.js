@@ -5,12 +5,7 @@ const getUser = require('../user/controller').getUser;
 const Discussion = require('./model');
 const Opinion = require('../opinion/model');
 
-/**
- * get a single discussion
- * @param  {String} discussion_slug
- * @param  {String} discussion_id
- * @return {Promise}
- */
+
 const getDiscussion = (discussion_slug, discussion_id) => {
   return new Promise((resolve, reject) => {
     let findObject = {};
@@ -26,7 +21,6 @@ const getDiscussion = (discussion_slug, discussion_id) => {
       if (error) { console.log(error); reject(error); }
       else if (!result) reject(null);
       else {
-        // add opinions to the discussion object
         getAllOpinions(result._id).then(
           (opinions) => {
             result.opinions = opinions;
@@ -39,11 +33,7 @@ const getDiscussion = (discussion_slug, discussion_id) => {
   });
 };
 
-/**
- * Create a new discussion
- * @param  {Object} discussion
- * @return {Promise}
- */
+
 const createDiscussion = (discussion) => {
   return new Promise((resolve, reject) => {
     const newDiscussion = new Discussion({
