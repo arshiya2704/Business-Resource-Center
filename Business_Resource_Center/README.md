@@ -5,6 +5,11 @@ Business Resource center is a one stop consultation service using vast resources
 1. Frontend implemented in Reactjs and Redux
 2. Backend implemented with nodejs, express and mongoDB.
 
-To run the project:
-1. npm install
-2. npm run start:dev
+To run the project in local:
+1.go inside Business_Resource_Center 
+2.npm install
+3.npm run start:dev
+4.Hit localhost:8080 in the browser.
+5.access admin page using localhost:8080/admin after login
+
+
