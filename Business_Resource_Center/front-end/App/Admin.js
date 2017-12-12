@@ -11,7 +11,7 @@ import styles from './styles.css';
 
 class AdminContainer extends Component {
   componentDidMount() {
-    // fetch the user
+    
     this.props.getUser();
   }
 
