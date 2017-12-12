@@ -12,9 +12,7 @@ const GITHUB_CALLBACK_URL = require('../config/credentials').GITHUB_CALLBACK_URL
 const getUser = require('./entities/user/controller').getUser;
 const signInViaGithub = require('./entities/user/controller').signInViaGithub;
 
-/**
- * passport configuration
- */
+
 const passportConfig = (app) => {
   passport.serializeUser((user, done) => {
     done(null, user._id);
@@ -27,7 +25,7 @@ const passportConfig = (app) => {
     );
   });
 
-  // github strategy for passport using OAuth
+  
   passport.use(new GitHubStrategy(
     {
       clientID: GITHUB_CLIENT_ID,
