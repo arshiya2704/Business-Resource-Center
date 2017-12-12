@@ -8,10 +8,7 @@ const Discussion = require('../discussion/model');
 const getAllOpinions = require('../opinion/controller').getAllOpinions;
 const getUser = require('../user/controller').getUser;
 
-/**
- * get all forums list
- * @type {Promise}
- */
+
 const getAllForums = () => {
   return new Promise((resolve, reject) => {
     Forum
@@ -24,12 +21,7 @@ const getAllForums = () => {
   });
 };
 
-/**
- * get discussions of a forum
- * @param  {ObjectId} forum_id
- * @param  {Boolean} pinned
- * @return {Promise}
- */
+
 const getDiscussions = (forum_id, pinned, sorting_method='date') => {
   return new Promise((resolve, reject) => {
     // define sorthing method
