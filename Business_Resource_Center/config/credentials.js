@@ -6,5 +6,5 @@ module.exports = {
   GITHUB_CLIENT_SECRET: '67cf6a9162545bc2a8c3aafd1f147439',
   GITHUB_CALLBACK_URL: 'http://localhost:8080/auth/facebook/callback',
   DBURL: 'mongodb://localhost:27017/brc',
-  //DBURL: 'mongodb://18.217.172.152:27017,18.216.213.231:27018,18.217.114.5:27019/brc?replicaSet=abhijit',
+  
 };
