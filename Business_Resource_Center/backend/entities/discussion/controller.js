@@ -18,7 +18,7 @@ const getDiscussion = (discussion_slug, discussion_id) => {
     .populate('user')
     .lean()
     .exec((error, result) => {
-      if (error) { console.log(error); reject(error); }
+      if (error) { reject(error); }
       else if (!result) reject(null);
       else {
         getAllOpinions(result._id).then(
@@ -26,7 +26,7 @@ const getDiscussion = (discussion_slug, discussion_id) => {
             result.opinions = opinions;
             resolve(result);
           },
-          (error) => { { console.log(error); reject(error); } }
+          (error) => { {  reject(error); } }
         );
       }
     });
@@ -52,7 +52,7 @@ const createDiscussion = (discussion) => {
 
     newDiscussion.save((error) => {
       if (error) {
-        console.log(error);
+        
         reject(error);
       }
 
@@ -70,7 +70,7 @@ const createDiscussion = (discussion) => {
 const toggleFavorite = (discussion_id, user_id) => {
   return new Promise((resolve, reject) => {
     Discussion.findById(discussion_id, (error, discussion) => {
-      if (error) { console.log(error); reject(error); }
+      if (error) { reject(error); }
       else if (!discussion) reject(null);
       else {
         // add or remove favorite
@@ -91,7 +91,7 @@ const toggleFavorite = (discussion_id, user_id) => {
         }
 
         discussion.save((error, updatedDiscussion) => {
-          if (error) { console.log(error); reject(error); }
+          if (error) {  reject(error); }
           resolve(updatedDiscussion);
         });
       }
@@ -119,14 +119,14 @@ const deleteDiscussion = (discussion_slug) => {
       Opinion
       .remove({ discussion_id })
       .exec((error) => {
-        if (error) { console.log(error); reject(error); }
+        if (error) {  reject(error); }
 
         // finally remove the discussion
         else {
           Discussion
           .remove({ discussion_slug })
           .exec((error) => {
-            if (error) { console.log(error); reject(error); }
+            if (error) {  reject(error); }
             else {
               resolve({ deleted: true });
             }
