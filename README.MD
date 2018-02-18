@@ -31,11 +31,12 @@ To run it on cloud
 
 Below are some screenshots demonstrating the application:
 
-### Welcome Page
+### Sign Up/Sign In using facebook strategy
 ![](images/1.png)
 
-### Performing Operations
+### Welcome Page to see the queries
 ![](images/2.png)
 
+### Can comment on query
 ![](images/3.png)
 
