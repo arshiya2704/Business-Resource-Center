@@ -18,13 +18,13 @@ class AppContainer extends Component {
       getUser,
     } = this.props;
 
-    
+    // get all forum list
     getForums();
 
-    
+    // check for authenticated user
     getUser();
 
-    
+    // set current forum based on route
     const currentForum = params.forum || '';
     updateCurrentForum(currentForum);
   }
@@ -41,14 +41,14 @@ class AppContainer extends Component {
     if (params.forum) newCurrentForum = params.forum;
     else if (forums) newCurrentForum = forums[0].forum_slug;
 
-    
+    // update current forum if necessery
     if (newCurrentForum !== currentForum) updateCurrentForum(newCurrentForum);
   }
 
   render() {
     const { forums } = this.props;
 
-    
+    // render only if we get the forum lists
     if (forums) {
       return (
         <div>

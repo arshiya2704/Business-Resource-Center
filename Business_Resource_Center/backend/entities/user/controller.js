@@ -17,7 +17,7 @@ const Opinion = require('../opinion/model');
 const getUser = (user_id) => {
   return new Promise((resolve, reject) => {
     User.findOne({ _id: user_id }, (error, user) => {
-      if (error) { reject(error); }
+      if (error) { console.log(error); reject(error); }
       else if (!user) reject(null);
       else resolve(user);
     });
@@ -36,10 +36,10 @@ const signInViaGithub = (gitProfile) => {
 
     // find if user exist on db
     User.findOne({ username: gitProfile.displayName }, (error, user) => {
-      if (error) {  reject(error); }
+      if (error) { console.log(error); reject(error); }
       else {
-       
-        
+        // get the email from emails array of gitProfile
+        console.log(JSON.stringify(gitProfile));
         const email = gitProfile.displayName;
 
         // user existed on db
@@ -60,7 +60,7 @@ const signInViaGithub = (gitProfile) => {
 
           // save the info and resolve the user doc
           user.save((error) => {
-            if (error) { reject(error); }
+            if (error) { console.log(error); reject(error); }
             else { resolve(user); }
           });
         }
@@ -70,7 +70,7 @@ const signInViaGithub = (gitProfile) => {
           // check if it is the first user (adam/eve) :-p
           // assign him/her as the admin
           User.count({}, (err, count) => {
-            
+            console.log('usercount: ' + count);
 
             let assignAdmin = true;
             if (count === 0) assignAdmin = true;
@@ -96,7 +96,7 @@ const signInViaGithub = (gitProfile) => {
 
             // save the user and resolve the user doc
             newUser.save((error) => {
-              if (error) { reject(error); }
+              if (error) { console.log(error); reject(error); }
               else { resolve(newUser); }
             });
 
@@ -119,7 +119,7 @@ const getFullProfile = (username) => {
     .findOne({ username })
     .lean()
     .exec((error, result) => {
-      if (error) {  reject(error); }
+      if (error) { console.log(error); reject(error); }
       else if (!result) reject('not_found');
       else {
         // we got the user, now we need all discussions by the user
@@ -142,7 +142,7 @@ const getFullProfile = (username) => {
                 (error) => { console.error(error); callback(error); }
               );
             }, (error) => {
-              if (error) {  reject(error); }
+              if (error) { console.log(error); reject(error); }
               else {
                 result.discussions = discussions;
                 resolve(result);

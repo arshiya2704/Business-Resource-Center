@@ -15,7 +15,10 @@ import {
   signOut,
 } from './api';
 
-
+/**
+ * get all forum list
+ * @return {action}
+ */
 export const getForums = () => {
   return (dispatch, getState) => {
     dispatch({ type: START_FETCHING_FORUMS });
@@ -27,7 +30,11 @@ export const getForums = () => {
   };
 };
 
-
+/**
+ * update current forum when route change occurs
+ * @param  {String} currentForum
+ * @return {action}
+ */
 export const updateCurrentForum = (currentForum) => {
   return {
     type: UPDATECURRENTFORUM,
@@ -35,7 +42,10 @@ export const updateCurrentForum = (currentForum) => {
   };
 };
 
-
+/**
+ * get the current user from server
+ * @return {action}
+ */
 export const getUser = () => {
   return (dispatch, getState) => {
     dispatch({ type: START_FETCHING_USER });

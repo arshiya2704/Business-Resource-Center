@@ -17,7 +17,7 @@ const getAllForums = () => {
     Forum
     .find({})
     .exec((error, results) => {
-      if (error) {  reject(error); }
+      if (error) { console.log(error); reject(error); }
       else if (!results) reject(null);
       else resolve(results);
     });
@@ -45,7 +45,7 @@ const getDiscussions = (forum_id, pinned, sorting_method='date') => {
     .populate('user')
     .lean()
     .exec((error, discussions) => {
-      if (error) {  reject(error); }
+      if (error) { console.error(error); reject(error); }
       else if (!discussions) reject(null);
       else {
         // attach opinion count to each discussion
@@ -57,10 +57,10 @@ const getDiscussions = (forum_id, pinned, sorting_method='date') => {
               eachDiscussion.opinion_count = opinions ? opinions.length : 0;
               callback();
             },
-            (error) => {  callback(error); }
+            (error) => { console.error(error); callback(error); }
           );
         }, (error) => {
-          if (error) {  reject(error); }
+          if (error) { console.error(error); reject(error); }
           else resolve(discussions);
         });
       }
