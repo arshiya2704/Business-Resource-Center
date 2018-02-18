@@ -2,7 +2,7 @@
 
 Business Resource center is a one stop consultation service using vast resources in business, engineering, medicine and counseling with local businesses to help them solve real world problems. It is a service for local business of any size or type which provides the resources for creating a successful business. Even if the business is just starting or need to expand, Business resource center can service these businesses with the required resources.
 
-Here is a link to the video demonstrating the problem and the solution to it:
+Here is a link to the video demonstrating the problem and the solution to it:</br>
 https://www.youtube.com/watch?v=OvGlKdp6d3w
 
 Technologies used:
